@@ -158,6 +158,12 @@ def getObject(striaght, color, type):
     elif type == "long":
         robot.straight(190)
         wait(500)
+    elif type == "sinklong":
+        robot.straight(140)
+        wait(400)
+    elif type == "bedcrasher":
+        robot.straight(230)
+        wait(500)
     robot.stop()
     seconds = timer.time()
     robot.straight(12)
@@ -204,18 +210,23 @@ def getObject(striaght, color, type):
     robot.turn(-95)
     print("[Get Object] Back on line")
 
-def getObjectBackwards(striaght, color, type):
-    print("[Get Object] WARN: RUNNING BACKWARDS!")
+def specialGetObject(striaght=50, color=80, type="sinklong"):
     print("[Get Object] Pass line")
     robot.straight(striaght)
     print("[Get Object] CLEAR-")
     print("[Get Object] READY TO TURN")
-    robot.turn(-93)
+    robot.turn(87)
     timer.reset()
     if type == "short":
         robot.straight(110)
     elif type == "long":
         robot.straight(190)
+        wait(500)
+    elif type == "sinklong":
+        robot.straight(150)
+        wait(400)
+    elif type == "bedcrasher":
+        robot.straight(230)
         wait(500)
     robot.stop()
     seconds = timer.time()
@@ -226,7 +237,7 @@ def getObjectBackwards(striaght, color, type):
     wait(500)
     robot.stop()
     print("[Object Door] ^^^^^^^^^ claw half up ^^^^^^^^^^^")
-    claw_motor.run_angle(80, 80, then=Stop.HOLD, wait=True)
+    claw_motor.run_angle(80, color, then=Stop.HOLD, wait=True)
     print("[Object Door] -----------------------------------")
     wait(2000)
     objectrgb = left_color.rgb()
@@ -251,7 +262,7 @@ def getObjectBackwards(striaght, color, type):
         robot.straight(95)
         claw_motor.hold()
         print("[Object Door] vvvvvvvvv claw down vvvvvvvvvv")
-        claw_motor.run_angle(70, -140, then=Stop.HOLD, wait=True)
+        claw_motor.run_angle(70, -145, then=Stop.HOLD, wait=True)
         robot.straight(-95)
     else:
         print("[Object Door] vvvvvvvvv claw down vvvvvvvvvv")
@@ -260,8 +271,8 @@ def getObjectBackwards(striaght, color, type):
     wait(seconds)
     robot.straight(-15)
     robot.stop()
-    robot.turn(95)
-    print("[Get Object] Back on line Backwards")
+    robot.turn(-87)
+    print("[Get Object] Back on line")
 
 def waitUntilReflect(compareValue):
     while True:
@@ -342,7 +353,7 @@ def MAINYEETBUTBACKWARDS():
     pass
     pass
     wait(2000)
-    getObject(50, 80, "long")
+    specialGetObject()
     robot.straight(70)
     completeLineFollow(1, right_color)
     wait(2000)
