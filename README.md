@@ -1,4 +1,4 @@
-# wro2021
+# WRO 2021
 Code resources for WRO 2021
 
 See EV3 folder for EV3 program
